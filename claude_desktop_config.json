@@ -1,0 +1,9 @@
+{
+  "mcpServers": {
+    "berlin-opendata": {
+      "command": "uv",
+      "args": ["run", "berlin-opendata-mcp"],
+      "env": {}
+    }
+  }
+}
