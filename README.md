@@ -136,22 +136,7 @@ Nach der Konfiguration kannst du den AI-Assistenten fragen:
 ```bash
 uv run ruff check src/
 uv run ruff format src/
-uv run pytest tests/test_api_client.py tests/test_server.py -v
 ```
-
-### Tests
-
-109 Unit-Tests decken alle Komponenten ab (keine Netzwerkzugriffe, vollstaendig gemockt):
-
-| Bereich | Tests |
-|---------|-------|
-| `ckan_request` / `http_get_json` | 10 |
-| Formatierungs-Hilfsfunktionen | 15 |
-| Fehlerbehandlung | 9 |
-| Pydantic-Eingabevalidierung | 33 |
-| 6 MCP Tools | 36 |
-| 2 MCP Resources | 4 |
-| Konstanten | 2 |
 
 ## Lizenz
 
