@@ -11,3 +11,8 @@ wheels/
 
 # Ruff cache
 .ruff_cache/
+
+# Tests
+tests/conftest.py
+tests/test_api_client.py
+tests/test_server.py
