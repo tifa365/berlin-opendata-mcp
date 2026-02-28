@@ -2,7 +2,12 @@
   "mcpServers": {
     "berlin-opendata": {
       "command": "uv",
-      "args": ["run", "berlin-opendata-mcp"],
+      "args": [
+        "--directory",
+        "/ABSOLUTE/PATH/TO/berlin-opendata-mcp",
+        "run",
+        "berlin-opendata-mcp"
+      ],
       "env": {}
     }
   }

@@ -29,9 +29,14 @@ uv run berlin-opendata-mcp
 MCP_TRANSPORT=sse MCP_PORT=8000 uv run berlin-opendata-mcp
 ```
 
-### Claude Desktop Konfiguration
+## Konfiguration
 
-Fuege folgendes zu deiner Claude Desktop Config hinzu:
+### Claude Desktop
+
+Editiere die Claude Desktop Config:
+- macOS: `~/Library/Application Support/Claude/claude_desktop_config.json`
+- Windows: `%APPDATA%\Claude\claude_desktop_config.json`
+- Linux: `~/.config/Claude/claude_desktop_config.json`
 
 ```json
 {
@@ -44,6 +49,45 @@ Fuege folgendes zu deiner Claude Desktop Config hinzu:
   }
 }
 ```
+
+### Claude Code (CLI)
+
+```bash
+claude mcp add berlin-opendata -- uv run berlin-opendata-mcp
+```
+
+### Cursor / Windsurf / VS Code
+
+Fuege zu `.cursor/mcp.json` bzw. `.vscode/settings.json` hinzu:
+
+```json
+{
+  "mcpServers": {
+    "berlin-opendata": {
+      "command": "uv",
+      "args": ["run", "berlin-opendata-mcp"]
+    }
+  }
+}
+```
+
+### Remote (SSE) – z.B. fuer ChatGPT, Open WebUI
+
+```bash
+MCP_TRANSPORT=sse MCP_PORT=8000 uv run berlin-opendata-mcp
+```
+
+Dann den SSE-Endpunkt `http://localhost:8000/sse` im Client eintragen.
+
+## Beispiel-Abfragen
+
+Nach der Konfiguration kannst du den AI-Assistenten fragen:
+
+- *"Welche Datensaetze gibt es zu Kitas in Berlin?"*
+- *"Zeig mir die Kategorien im Berliner Open-Data-Katalog"*
+- *"Wie viele Datensaetze hat Berlin insgesamt?"*
+- *"Finde Datensaetze zum Thema Einwohner in Berlin"*
+- *"Welche Datenformate sind im Berliner Katalog am haeufigsten?"*
 
 ## Tools
 
