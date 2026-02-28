@@ -2,6 +2,19 @@
 
 MCP Server fuer den Zugriff auf Open Data des Landes Berlin. Bietet 6 Tools fuer CKAN-Katalogsuche, Analyse und Exploration ueber 2500+ Datensaetze.
 
+## Wie funktioniert das?
+
+Dieser Server implementiert das [Model Context Protocol (MCP)](https://modelcontextprotocol.io/) — ein offener Standard, ueber den KI-Assistenten auf externe Datenquellen zugreifen koennen.
+
+Der Ablauf im Detail:
+
+1. **Verbindung**: Der KI-Client (z.B. Claude Desktop) startet den MCP-Server als Hintergrundprozess und kommuniziert ueber stdin/stdout (JSON-RPC).
+2. **Tool-Discovery**: Beim Start fragt der Client den Server nach verfuegbaren Tools. Der Server liefert fuer jedes Tool Name, Beschreibung und Parameter-Schema (definiert ueber Pydantic-Models). Diese Beschreibungen dienen dem KI-Modell als Entscheidungsgrundlage.
+3. **Ausfuehrung**: Stellt ein Nutzer eine Frage wie *"Welche Kita-Daten gibt es in Berlin?"*, erkennt das Modell anhand der Tool-Beschreibungen, dass `berlin_search_datasets` mit `query="Kita"` die passende Aktion ist. Der Client sendet den Tool-Call an den Server, dieser fragt die CKAN API ab und liefert die Ergebnisse als Markdown zurueck.
+4. **Antwort**: Das KI-Modell fasst die zurueckgelieferten Daten fuer den Nutzer zusammen.
+
+Die Qualitaet der Tool- und Parameter-Beschreibungen im Code ist dabei entscheidend — sie bestimmen, wie zuverlaessig das Modell das richtige Tool mit den richtigen Parametern waehlt.
+
 ## Features
 
 - **6 MCP Tools** fuer Datensatz-Suche, Details, Kategorien, Tags, Analyse und Katalog-Statistiken
